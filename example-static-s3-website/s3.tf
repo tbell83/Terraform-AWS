@@ -45,7 +45,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "web_s3_side_encrp
 }
 
 # resource "aws_s3_bucket_website_configuration" "web_s3_website_configuration" {
-#   bucket = aws_s3_bucket.web_s3_bucket.bucket
+#   bucket = aws_s3_bucket.web_s3_bucket.id
 
 #   index_document {
 #     suffix = "index.html"
@@ -78,7 +78,7 @@ resource "aws_s3_bucket_logging" "web_s3_logging" {
 }
 
 resource "aws_s3_bucket_cors_configuration" "web_s3_cors_configuration" {
-  bucket = aws_s3_bucket.web_s3_bucket.bucket
+  bucket = aws_s3_bucket.web_s3_bucket.id
 
   cors_rule {
     allowed_headers = ["*"]
@@ -95,7 +95,7 @@ resource "aws_s3_bucket_cors_configuration" "web_s3_cors_configuration" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "web_s3_lifecycle_configuration" {
-  bucket     = aws_s3_bucket.web_s3_bucket.bucket
+  bucket     = aws_s3_bucket.web_s3_bucket.id
   depends_on = [aws_s3_bucket_versioning.web_s3_versioning]
 
   rule {
@@ -179,7 +179,7 @@ resource "aws_s3_bucket_logging" "logging_logging" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "logging_lifecycle_configuration" {
-  bucket     = aws_s3_bucket.logging_bucket.bucket
+  bucket     = aws_s3_bucket.logging_bucket.id
   depends_on = [aws_s3_bucket_versioning.logging_versioning]
 
   rule {

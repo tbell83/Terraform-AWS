@@ -2,7 +2,7 @@
 resource "aws_cloudfront_distribution" "web_s3_cloudfront_distribution" {
   origin {
     domain_name = aws_s3_bucket.web_s3_bucket.bucket_regional_domain_name
-    origin_id   = aws_s3_bucket.web_s3_bucket.bucket
+    origin_id   = aws_s3_bucket.web_s3_bucket.id
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.web_s3_cloudfront_origin_access_identity.cloudfront_access_identity_path
@@ -21,14 +21,14 @@ resource "aws_cloudfront_distribution" "web_s3_cloudfront_distribution" {
 
   logging_config {
     include_cookies = false
-    bucket          = "${aws_s3_bucket.web_s3_bucket.bucket}.s3.amazonaws.com"
+    bucket          = "${aws_s3_bucket.web_s3_bucket.id}.s3.amazonaws.com"
     prefix          = "cloudfront/"
   }
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = aws_s3_bucket.web_s3_bucket.bucket
+    target_origin_id = aws_s3_bucket.web_s3_bucket.id
 
     forwarded_values {
       query_string = false
