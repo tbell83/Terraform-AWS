@@ -1,0 +1,1 @@
+# Example of a static website hosted on s3 using Cloudfront to restrict access
