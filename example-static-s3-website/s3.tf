@@ -66,8 +66,10 @@ resource "aws_s3_bucket_versioning" "web_s3_versioning" {
 resource "aws_s3_bucket_public_access_block" "web_s3_public_access_block" {
   bucket = aws_s3_bucket.web_s3_bucket.id
 
-  block_public_acls   = true
-  block_public_policy = true
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_logging" "web_s3_logging" {
@@ -167,8 +169,10 @@ resource "aws_s3_bucket_versioning" "logging_versioning" {
 resource "aws_s3_bucket_public_access_block" "logging_public_access_block" {
   bucket = aws_s3_bucket.logging_bucket.id
 
-  block_public_acls   = true
-  block_public_policy = true
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_logging" "logging_logging" {
@@ -200,5 +204,4 @@ resource "aws_s3_bucket_lifecycle_configuration" "logging_lifecycle_configuratio
       storage_class   = "GLACIER"
     }
   }
-
 }

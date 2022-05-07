@@ -11,12 +11,6 @@ variable "logging_bucket_name" {
   description = "Name of the bucket that holds access logs for the web s3 bucket"
 }
 
-variable "cloudfront_distribution_origin_id" {
-  type        = string
-  default     = ""
-  description = "origin identifier for cloudfront distribution web s3 bucket"
-}
-
 variable "acm_certificate_domain_name" {
   type        = string
   default     = ""

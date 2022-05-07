@@ -38,7 +38,7 @@ resource "aws_cloudfront_distribution" "web_s3_cloudfront_distribution" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -56,8 +56,9 @@ resource "aws_cloudfront_distribution" "web_s3_cloudfront_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = false
-    acm_certificate_arn            = aws_acm_certificate.web_s3_cf_certificate.arn
+    acm_certificate_arn      = aws_acm_certificate.web_s3_cf_certificate.arn
+    minimum_protocol_version = "TLSv1.2_2021"
+    ssl_support_method       = "sni-only"
   }
 }
 
